@@ -1,0 +1,30 @@
+html, body {
+	height: 100%;
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	padding-top: 50px;
+	overflow: auto;
+}
+
+.editor-preview-container {
+	height: 100%;
+}
+
+.CodeMirror {
+	height: 100% !important;
+	font-family:Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.markdown-editor-container {
+	height: 100%;
+}
+
+.markdown-preview-container {
+	height: 100%;
+	overflow: scroll;
+}

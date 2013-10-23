@@ -1,0 +1,11 @@
+{
+	"db": {
+		"host": "",
+		"user": "",
+		"password": "",
+		"options": {
+			"dialect": "sqlite",
+			"storage": "./sokky.db"
+		}
+	}
+}

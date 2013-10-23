@@ -1,0 +1,27 @@
+{
+  "name": "sokky",
+  "version": "0.0.1",
+  "authors": [
+    "Keichi Takahashi <keichi.t@me.com>"
+  ],
+  "description": "A simple web-based Markdown editor.",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "bootstrap": "~3.0.0",
+    "marked": "~0.2.9",
+    "codemirror": "~3.18.0",
+    "underscore": "~1.5.2",
+    "highlightjs": "~7.3.0",
+    "jquery-throttle-debounce": "*"
+  }
+}
