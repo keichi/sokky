@@ -2,11 +2,10 @@ var NoteItemView = Backbone.View.extend({
 	tagName: 'a',
 	className: 'list-group-item',
 	events: {
-		'click': this.selectThis
+		'click': 'selectThis'
 	},
 
 	initialize: function() {
-		this.template = _.template($('#note-item-template').html());
 		this.stripTagRegexp = new RegExp();
 		this.stripTagRegexp.compile('<\/?([a-z][a-z0-9]*)\b[^>]*>|<!--[\s\S]*?-->', 'gi');
 
@@ -15,11 +14,11 @@ var NoteItemView = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.$el.html(this.template({
-			title: this.model.get('title'),
-			body: this.stripTags(this.model.get('body')).substr(0, 100)
-		}));
-		this.$el.attr('href', '/edit#' + this.model.get('id'));
+		var data = this.model.toJSON();
+		data.body = this.stripTags(data.body).substr(0, 100);
+
+		this.$el.html(NoteItemView.template(data));
+		this.$el.attr('href', '/edit/' + this.model.get('id'));
 
 		return this;
 	},
@@ -32,7 +31,10 @@ var NoteItemView = Backbone.View.extend({
 		return input.replace(this.stripTagRegexp, '');
 	},
 
-	selectThis: function() {
-
+	selectThis: function(e) {
+		e.preventDefault();
+		Backbone.history.navigate(this.$el.attr('href'), {trigger: true});
 	}
+}, {
+	template: _.template($('#note-item-template').html())
 });

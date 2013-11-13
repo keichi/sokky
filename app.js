@@ -38,7 +38,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function(req, res) { res.sendfile('./public/index.html'); });
-app.get('/edit', function(req, res) { res.sendfile('./public/edit.html'); });
+app.get('/edit/:id', function(req, res) { res.sendfile('./public/index.html'); });
 app.resource('api/notes', require('./routes/note'));
 
 http.createServer(app).listen(app.get('port'), function(){

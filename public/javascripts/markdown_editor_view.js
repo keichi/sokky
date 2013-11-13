@@ -24,13 +24,7 @@ var MarkdownEditorView = Backbone.View.extend({
 		this.listenTo(App.proxy, 'md:strikethrough', function() { this.wrapWith('~~', '~~'); });
 		this.listenTo(App.proxy, 'md:link', function() { this.wrapWith('[', '](http://)'); });
 		this.listenTo(App.proxy, 'md:image', function() { this.wrapWith('![', '](http://)'); });
-
-		// Only for debug
-		this.model.fetch({
-			success: function(model, response, options) {
-				that.cm.setValue(that.model.get('body'));
-			}
-		});
+		this.listenTo(this.model, 'all', this.render);
 	},
 
 	wrapWith: function(wrapStart, wrapEnd) {
@@ -40,5 +34,9 @@ var MarkdownEditorView = Backbone.View.extend({
 		var text = this.cm.getSelection();
 		text = wrapStart + text + wrapEnd;
 		this.cm.replaceSelection(text);
+	},
+
+	render: function() {
+		this.cm.setValue(this.model.get('body'));
 	}
 });
